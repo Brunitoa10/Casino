@@ -1,0 +1,93 @@
+:root {
+  color-scheme: dark;
+
+  /* Paleta: club privado — negro verdoso, paño esmeralda, oro viejo */
+  --bg: #08100d;
+  --bg-deep: #050907;
+  --surface: #0e1814;
+  --surface-raised: #13211b;
+  --felt: #0d2a20;
+  --felt-light: #13392b;
+  --line: rgba(201, 164, 92, 0.18);
+  --line-strong: rgba(201, 164, 92, 0.42);
+
+  --gold: #c9a45c;
+  --gold-bright: #f0d48e;
+  --gold-deep: #8a6a2f;
+  --ruby: #b8283f;
+  --ruby-bright: #e04a62;
+  --emerald: #1f9d6b;
+  --onyx: #16171a;
+
+  --text: #efe7d6;
+  --text-muted: #9a9a8c;
+  --text-faint: #6a6d64;
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.55);
+  --glow-gold: 0 0 0 1px rgba(240, 212, 142, 0.35), 0 0 28px rgba(201, 164, 92, 0.35);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --gradient-gold: linear-gradient(135deg, #f5dc9b 0%, #c9a45c 45%, #8a6a2f 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root { min-height: 100%; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(31, 157, 107, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(201, 164, 92, 0.07), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+button, input { font: inherit; color: inherit; }
+
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

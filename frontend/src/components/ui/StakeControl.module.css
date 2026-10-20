@@ -1,0 +1,58 @@
+.wrapper { display: flex; flex-direction: column; gap: 12px; }
+
+.head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.stepper {
+  display: flex;
+  align-items: center;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.stepper button {
+  width: 34px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 13px;
+}
+.stepper button:hover:not(:disabled) { color: var(--gold-bright); background: rgba(201, 164, 92, 0.1); }
+
+.value {
+  min-width: 84px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+}
+
+.chips { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Fichas de casino: borde punteado y color por denominación */
+.chip {
+  --chip: #3a4a44;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 255, 255, 0.55);
+  background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--chip) 85%, white) 0%, var(--chip) 60%);
+  box-shadow: 0 0 0 3px var(--chip), 0 6px 14px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  transition: transform 180ms var(--ease-out), box-shadow 180ms;
+}
+.chip[data-tier='10'] { --chip: #2f6f9e; }
+.chip[data-tier='50'] { --chip: #b8283f; }
+.chip[data-tier='100'] { --chip: #1c6b4a; }
+.chip[data-tier='500'] { --chip: #4b2d77; }
+.chip[data-tier='1000'] { --chip: #9b7a35; }
+
+.chip:hover:not(:disabled) { transform: translateY(-3px); }
+.chip:disabled { opacity: 0.3; }
+.active { transform: translateY(-4px); box-shadow: 0 0 0 3px var(--chip), 0 0 0 5px var(--gold-bright), 0 10px 22px rgba(0, 0, 0, 0.5); }

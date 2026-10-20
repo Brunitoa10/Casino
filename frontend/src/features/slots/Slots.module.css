@@ -1,0 +1,121 @@
+.cabinet {
+  --cell: clamp(78px, 12vw, 128px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 0;
+}
+
+/* ── Marquesina de luces */
+.marquee { display: flex; gap: clamp(10px, 2vw, 22px); }
+
+.bulb {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+  box-shadow: 0 0 6px rgba(201, 164, 92, 0.4);
+}
+
+.bulbChase { animation: chase 560ms infinite; }
+
+@keyframes chase {
+  0%, 100% { background: var(--gold-deep); box-shadow: 0 0 4px rgba(201, 164, 92, 0.3); }
+  50% { background: var(--gold-bright); box-shadow: 0 0 14px var(--gold-bright); }
+}
+
+/* ── Ventana de rodillos */
+.window {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell));
+  gap: 10px;
+  padding: 14px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #050907, #0b1310);
+  box-shadow:
+    0 0 0 2px var(--gold-deep),
+    0 0 0 6px #1a1408,
+    0 0 0 7px var(--line-strong),
+    inset 0 0 30px rgba(0, 0, 0, 0.8),
+    0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.reel {
+  position: relative;
+  height: calc(var(--cell) * 3);
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #e9e2cf 0%, #fbf7ec 30%, #fbf7ec 70%, #e9e2cf 100%);
+}
+
+/* Sombra cilíndrica del rodillo */
+.reel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+.strip { will-change: transform; }
+
+.spinning .cell { filter: blur(1.6px); }
+
+.cell {
+  height: var(--cell);
+  padding: 16%;
+  display: grid;
+  place-items: center;
+  transition: filter 200ms;
+}
+
+.winCell { animation: winPulse 900ms ease-in-out infinite alternate; }
+
+@keyframes winPulse {
+  from { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+  to { transform: scale(1.12); filter: drop-shadow(0 0 10px rgba(201, 164, 92, 0.9)); }
+}
+
+.lines {
+  position: absolute;
+  inset: 14px;
+  width: calc(100% - 28px);
+  height: calc(100% - 28px);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.payline {
+  fill: none;
+  stroke: var(--gold-bright);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 6px rgba(240, 212, 142, 0.9));
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw 600ms var(--ease-out) forwards;
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 520px) {
+  .cabinet { --cell: calc((100vw - 120px) / 3); }
+  .window { gap: 6px; padding: 8px; }
+  .lines { inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); }
+}
+
+/* ── Controles y tabla de pagos */
+.actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.paytable { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
+
+.payItem { display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--text); font-size: 13px; }
+
+.payIcon { width: 26px; height: 26px; display: inline-block; }
+
+.payNote { width: 100%; text-align: center; font-size: 12px; color: var(--text-faint); }

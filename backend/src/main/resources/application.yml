@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:8080}
+  # Margen ante cookies grandes de otros proyectos en localhost
+  max-http-request-header-size: 64KB
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: aurum-casino
+  datasource:
+    url: jdbc:sqlite:${AURUM_DB_PATH:./aurum.db}
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      # SQLite admite un solo escritor: una conexión evita SQLITE_BUSY
+      maximum-pool-size: 1
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+
+aurum:
+  cors:
+    allowed-origins: ${AURUM_CORS_ORIGINS:http://localhost:5173}
+  auth:
+    session-ttl: 7d
+  wallet:
+    initial-balance: 10000
+    refill-threshold: 100
+    refill-amount: 5000
+  limits:
+    min-stake: 1
+    max-stake: 5000

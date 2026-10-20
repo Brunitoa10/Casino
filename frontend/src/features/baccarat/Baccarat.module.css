@@ -1,0 +1,118 @@
+.table { position: relative; display: flex; flex-direction: column; gap: 22px; }
+
+.hands { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .hands { grid-template-columns: 1fr; } }
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: rgba(5, 9, 7, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 184px;
+  transition: box-shadow 300ms, border-color 300ms;
+}
+
+.side header { display: flex; align-items: center; justify-content: space-between; }
+
+.sideName { font-family: var(--font-display); font-size: 26px; font-weight: 700; }
+.player .sideName { color: #8cc4ef; }
+.banker .sideName { color: #ff8fa3; }
+
+.score {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  background: var(--bg-deep);
+  border: 1px solid var(--line-strong);
+}
+
+.cards { display: flex; gap: 10px; min-height: 110px; }
+
+.winner { border-color: var(--gold); box-shadow: var(--glow-gold); }
+
+.tieBadge {
+  align-self: center;
+  margin-top: -8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(31, 157, 107, 0.25);
+  border: 1px solid rgba(63, 207, 147, 0.5);
+  color: #6ff0b6;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* ── Paño de apuestas */
+.spots { display: grid; grid-template-columns: 1.2fr 0.8fr 1.2fr; gap: 10px; }
+
+.spot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 92px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(240, 212, 142, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  transition: background 200ms, box-shadow 200ms, transform 120ms;
+}
+.spot:hover:not(:disabled) { background: rgba(255, 255, 255, 0.07); }
+.spot:active:not(:disabled) { transform: scale(0.98); }
+
+.spotPLAYER { border-color: rgba(140, 196, 239, 0.5); }
+.spotBANKER { border-color: rgba(255, 143, 163, 0.5); }
+.spotTIE { border-color: rgba(111, 240, 182, 0.5); }
+
+.spotLabel { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+.spotPays { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; }
+
+.spotWin { box-shadow: 0 0 0 2px var(--gold-bright), 0 0 22px rgba(240, 212, 142, 0.5); }
+
+.chip {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--gradient-gold);
+  color: #1b1408;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  animation: drop 220ms var(--ease-out);
+}
+
+@keyframes drop { from { transform: translateY(-10px) scale(1.3); opacity: 0; } }
+
+/* ── Historial tipo "bead road" */
+.road { display: flex; gap: 4px; flex-wrap: wrap; min-height: 24px; }
+.road span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+}
+.beadPLAYER { background: #2f6f9e; }
+.beadBANKER { background: #a3192f; }
+.beadTIE { background: #137a52; }
+
+.actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.totalBox { display: flex; flex-direction: column; margin-right: 8px; line-height: 1.1; }
+.totalBox strong { font-family: var(--font-display); font-size: 26px; }
